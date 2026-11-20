@@ -30,7 +30,7 @@ Compare only equivalent semantics and compatible lanes. Published-package and so
 | Harness | ID family | Known coverage | Qualification / gaps |
 |---|---|---|---|
 | [FSM_API_Benchmark](https://github.com/TrentBest/FSM_API_Benchmark) | FSM-* | Single-FSM and processing-group update entry points; broader suite described in open work | Historical diagnostics/timings need provenance verification; automation/baselines not verified |
-| [FSM_COS_Benchmarks](https://github.com/TrentBest/FSM_COS_Benchmarks) | COS-* reserved | Current master measures SHA-256 over a 10,000-byte fixture | Primitive microbenchmark only; not FSM_COS composition coverage |
+| [FSM_COS_Benchmarks](https://github.com/TrentBest/FSM_COS_Benchmarks) | COS-* | `master` contains a SHA-256 primitive; `development` defines COS-CAT, COS-MAN, COS-CMP, COS-DEP, COS-ERR, COS-LOAD, and COS-RT workloads | Run #42167035105 passed 101 cases across 15 CSV reports (harness `ffe495925401ea19e8d9e0fc7d456656402f5ec5`, source `207b417a7958134bbc138374a5d077b707e1faf3`); exploratory ShortRun on virtualized Windows 11/Hyper-V, not a stable baseline |
 | [FSM_Serialization_Benchmarks](https://github.com/TrentBest/FSM_Serialization_Benchmarks) | SER-* | Stream/buffer strategies, fixed-width vs ULEB128 encode/decode; Experience Brotli work in an open draft | Keep package/source lanes separate; definition codecs, integer round-trip, property tests, adapters and cross-repo dispatch remain incomplete |
 | This repository | SYS-* | Cross-repository catalog/policy | No composite execution or aggregated result history claimed |
 
@@ -42,6 +42,11 @@ Measure string- and integer-backed paths without presuming a winner: update/step
 
 ### FSM_COS
 Measure manifest parsing/validation, dependency resolution, microbundle graph composition, unresolved dependencies, repeated composition, caching and execution handoff. Define graph shape/size. A hash microbenchmark is useful only as a separately labeled primitive.
+
+### FSM_COS evidence note
+The `development` harness is materially ahead of the `master` branch: it includes stable-ID catalog lookup, manifest construction/staged validation, empty and multi-root composition, dependency chains/fan-out/shared dependencies, duplicate requests, missing/conflicting-version failures, stateful load callbacks, and RuntimeAssembly lookup comparisons. The development README/catalog documents a successful 101-case run (15 CSV reports) in [workflow run #42167035105](https://github.com/TrentBest/FSM_COS_Benchmarks/actions/runs/42167035105), with raw evidence retained in artifact `fsm-cos-benchmark-42167035105-1-ffe495925401ea19e8d9e0fc7d456656402f5ec5`.
+
+That run used BenchmarkDotNet 0.15.2 and a three-iteration ShortRunJob on a virtualized Windows 11 / Hyper-V runner. It demonstrates that the configured workloads executed and reports were retained; it does not establish publication-quality baselines or calibrated regression thresholds. The measured harness commit was `ffe495925401ea19e8d9e0fc7d456656402f5ec5` and the FSM_COS source commit was `207b417a7958134bbc138374a5d077b707e1faf3`. The current `master` branch still has the separate SHA-256 primitive benchmark; do not confuse branch states or compare the primitive to composition workloads.
 
 ### Serialization
 Separate published NuGet and development-source lanes. Measure encode, decode and round-trip independently; include FSM definition/experience semantics, buffer ownership/copying/pooling, compression ratio and correctness at boundaries. Report bytes saved alongside CPU and allocation costs.
