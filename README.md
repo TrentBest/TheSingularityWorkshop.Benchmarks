@@ -20,7 +20,7 @@ Renderer and Visualization are consumed as MicroBundles. Their benchmarks must m
 | Domain | Harness | Evidence status |
 |---|---|---|
 | FSM runtime | [FSM_API_Benchmark](https://github.com/TrentBest/FSM_API_Benchmark) | Existing operation/stress harness; historical timings require provenance verification; report-only regression posture |
-| Compute operating system | [FSM_COS_Benchmarks](https://github.com/TrentBest/FSM_COS_Benchmarks) | Current master source is a SHA-256 workload, not representative FSM_COS coverage |
+| Compute operating system | [FSM_COS_Benchmarks](https://github.com/TrentBest/FSM_COS_Benchmarks) | `master` retains a SHA-256 primitive; `development` contains stable-ID manifest/catalog/validation, composition, dependency, failure, load-callback, and runtime-lookup workloads. A 101-case / 15-report CI run passed on 2026-11-06; results remain exploratory ShortRun evidence, not calibrated baselines |
 | Serialization | [FSM_Serialization_Benchmarks](https://github.com/TrentBest/FSM_Serialization_Benchmarks) | Published-package and development-source lanes separated; harness incomplete |
 | Cross-ecosystem index | This repository | Catalog and contract established; no composite results claimed |
 
