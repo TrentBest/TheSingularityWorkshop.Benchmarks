@@ -59,3 +59,6 @@ For storage, separate lookup, write, iteration, serialization, cache and memory 
 
 ## 7. Automation status
 This is an inventory/policy document, not a running regression service. Cross-repository dispatch, artifact ingestion, trend visualization, baseline calibration and automated interpretation remain future work until workflows and successful artifacts prove otherwise.
+
+
+Detailed measured results for this run are recorded in [the FSM_COS exploratory performance snapshot](evidence/FSM_COS_RUN_42167035105.md). Highlights include flat catalog lookup (~4.4 ns across 1–1,000 entries), RuntimeAssembly ID lookup scaling to ~4.14 μs at 1,000 entries, and allocation-heavy composition workloads. The snapshot preserves mean, standard deviation, allocation/GC data, derived throughput, provenance, and explicit limitations; it is not a calibrated baseline.
